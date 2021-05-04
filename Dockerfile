@@ -1,11 +1,16 @@
 FROM tomcat:9.0-jdk11-corretto
 
-ADD http://tb.plazi.org/GgServer/TbBasic.zip TbBasic.zip
+RUN mkdir ../install
 
-RUN jar xf TbBasic.zip && cd webapps && mkdir GgServer && cd GgServer && jar xf ../../GgServerWeb.zip \
-    && cp ../../GgServerWeb.docs.zip ./ && java -jar Extender.jar GgServerWeb.docs.zip
+WORKDIR ../install
 
-RUN mkdir /usr/local/GgServer && cd /usr/local/GgServer && jar xf ../tomcat/GgServer.zip && jar tf ../tomcat/GgServer.docs.zip
+ADD http://tb.plazi.org/GgServer/TbLocalPlazi.zip TbBasic.zip
+
+RUN jar xf TbBasic.zip && cd ../tomcat/webapps && mkdir GgServer && cd GgServer && jar xf ../../../install/GgServerWeb.zip \
+    && cp ../../../install/GgServerWeb.docs.zip ./ && java -jar Extender.jar GgServerWeb.docs.zip
+
+RUN mkdir /usr/local/GgServer && cd /usr/local/GgServer && jar xf ../install/GgServer.zip && \
+    jar xf ../install/GgServer.docs.zip && jar xf ../install/GgServer.doc.plaziSrs.zip
 
 # fixing typo in default config file
 RUN cd /usr/local/GgServer && mv config.cnfg config.cnfg-orig && cat config.cnfg-orig | sed 's/\.derby\.jar/derby\.jar/' > config.cnfg
