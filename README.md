@@ -1,6 +1,6 @@
-# GoldenGATE Server Docker Image
+# Plazi GoldenGATE Server Docker Image
 
-This project creates a Docker image of the GoldenGATE Document Markup & Retrieval Server by Guido Sautter
+This project creates a Docker image of the GoldenGATE Document Markup & Retrieval Server by Guido Sautter with plazi specific extensions.
 
 ## Usage
 
@@ -18,7 +18,7 @@ To build the image yourself:
 
 ### Is this the whole Plazi TreatmentBank?
 
-This is the core of the software running it, the TreatmentBank contains some customizations and of course, a lot of data.
+This is the core of the software running it but without data and some extensions.
 
 ### Shouldn't this be two images, one for the backend and one for the eb-application?
 
