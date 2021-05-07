@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<web-app>
+	<servlet>
+		<servlet-name>ResServlet</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.easyIO.web.ResourceServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>resData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResServlet</servlet-name>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>GgServerIndex</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.client.IndexServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>indexData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgServerIndex</servlet-name>
+		<url-pattern>/index/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgServerIndex</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgServerIndex</servlet-name>
+		<url-pattern>/index.html</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GgServerManager</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.uaa.webClient.AuthenticatedWebClientServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>managerData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgServerManager</servlet-name>
+		<url-pattern>/manager</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgServerManager</servlet-name>
+		<url-pattern>/manager/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>GgServerClientProxy</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.client.ProxyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgServerClientProxy</servlet-name>
+		<url-pattern>/proxy</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>GgServerNotificationEndpoint</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.enr.client.GoldenGateEnrClientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgServerNotificationEndpoint</servlet-name>
+		<url-pattern>/notify/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgServerNotificationEndpoint</servlet-name>
+		<url-pattern>/notify</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>DownloadsServlet</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.utilities.DownloadServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>Downloads</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownloadsServlet</servlet-name>
+		<url-pattern>/Downloads</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownloadsServlet</servlet-name>
+		<url-pattern>/Downloads/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>RefresherServlet</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.easyIO.web.ReInitializerServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>refresherData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RefresherServlet</servlet-name>
+		<url-pattern>/Refresher</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RefresherServlet</servlet-name>
+		<url-pattern>/Refresher/*</url-pattern>
+	</servlet-mapping>
+
+	
+	<!-- this servlet is deactivated by default in order to prevent accidental public exposure of documents that are copyrighted. -->
+	<!--
+	<servlet>
+		<servlet-name>GgDioDocuments</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.dio.client.DocumentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgDioDocuments</servlet-name>
+		<url-pattern>/documents</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgDioDocuments</servlet-name>
+		<url-pattern>/documents/*</url-pattern>
+	</servlet-mapping>
+	-->
+	
+	<servlet>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.srs.webPortal.SearchPortalServlet</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>SearchPortal.cnfg</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>srsWebPortalData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/thesaurus</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/statistics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/html/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsSearchPortal</servlet-name>
+		<url-pattern>/xml/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GgSrsLinkPortal</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.srs.webPortal.SearchLinkServlet</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>SearchPortal.cnfg</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>srsWebPortalData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgSrsLinkPortal</servlet-name>
+		<url-pattern>/searchLinks</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>GgSrsXSLT</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.srs.webPortal.XsltServlet</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>XSLT.cnfg</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>srsWebPortalData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgSrsXSLT</servlet-name>
+		<url-pattern>/xslt/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsXSLT</servlet-name>
+		<!-- for TaxonX document delivery -->
+		<url-pattern>/taxonx/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GgSrsRssFeeder</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.srs.webPortal.RssServlet</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>RSS.cnfg</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>srsWebPortalData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgSrsRssFeeder</servlet-name>
+		<url-pattern>/xml.rss.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsRssFeeder</servlet-name>
+		<url-pattern>/html.rss.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GgSrsRssFeeder</servlet-name>
+		<url-pattern>/taxonx.rss.xml</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GgSrsCollectionStatistics</servlet-name>
+		<servlet-class>de.uka.ipd.idaho.goldenGateServer.scs.client.ScsStatisticsServlet</servlet-class>
+		<init-param>
+			<param-name>dataPath</param-name>
+			<param-value>srsReportData</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GgSrsCollectionStatistics</servlet-name>
+		<url-pattern>/srs_reports</url-pattern>
+	</servlet-mapping>
+</web-app>

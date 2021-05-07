@@ -6,8 +6,9 @@ WORKDIR ../install
 
 ADD http://tb.plazi.org/GgServer/TbLocalPlazi.zip TbBasic.zip
 
-RUN jar xf TbBasic.zip && cd ../tomcat/webapps && mkdir GgServer && cd GgServer && jar xf ../../../install/GgServerWeb.zip \
-    && cp ../../../install/GgServerWeb.docs.zip ./ && java -jar Extender.jar GgServerWeb.docs.zip
+RUN jar xf TbBasic.zip && cd ../tomcat/webapps 
+
+COPY ./GgServerWebapp /usr/local/tomcat/webapps/GgServer/ 
 
 RUN mkdir /usr/local/GgServer && cd /usr/local/GgServer && jar xf ../install/GgServer.zip && \
     jar xf ../install/GgServer.docs.zip && jar xf ../install/GgServer.doc.plaziSrs.zip
@@ -18,6 +19,8 @@ RUN cd /usr/local/GgServer && mv config.cnfg config.cnfg-orig && cat config.cnfg
 COPY setup.gg /usr/local/GgServer
 
 RUN cd /usr/local/GgServer && cat setup.gg | java -jar GgServer.jar
+
+RUN chmod +x /usr/local/GgServer/bin/ggsc
 
 COPY start-gg-back-and-web.sh /usr/local/bin
 
