@@ -1,0 +1,4 @@
+// settings for accessing the backing GoldenGATE Server
+serverAddress = "localhost";
+serverPort = "8015";
+// settings for accessing the backing GoldenGATE Server

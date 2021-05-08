@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    tb:
+        image: plazi/goldengate:plazi
+        volumes:
+          - ./data/dio:/usr/local/GgServer/Components/GgServerDIOData/Documents
+          - ./data/srs:/usr/local/GgServer/Components/GgServerSRSData/Documents
+          - ./data/derby:/usr/local/GgServer/DerbyDB
+          - ./GgServerWebapp:/usr/local/tomcat/webapps/GgServer
+        ports: 
+            - "8015:8015"
+            - "8080:8080"
