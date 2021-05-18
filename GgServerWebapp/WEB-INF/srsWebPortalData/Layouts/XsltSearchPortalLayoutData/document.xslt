@@ -2,8 +2,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3">
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 	
-	<xsl:template match="document">
-		<h1><xsl:value-of select="@docTitle" /></h1>
+	<xsl:template match="td"><!-- never called, but required to include TD in input --></xsl:template>
+	<xsl:template match="th"><!-- never called, but required to include TH in input --></xsl:template>
+
+	<xsl:template match="/document">
+		
 		<table class="mainTable" width="100%">
 			<tr>
 				<td class="mainTableHeader">
@@ -85,20 +88,17 @@
 					</table>
 					<table class="documentTable">
 						<tr>
-							<td class="documentTableHeader">Article</td>
+							<td class="documentTableHeader">Treatment</td>
 						</tr>
 						<tr>
 							<td class="documentTableBody">
-								<xsl:apply-templates select="/document//paragraph"/>
+								<xsl:apply-templates select="./treatment//paragraph"/>
 							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
-		<!-- <textarea>
-		<xsl:copy-of select="." />
-		</textarea> -->
 		
 	</xsl:template>
 	
@@ -156,35 +156,10 @@
 	
 	<!--xsl:template match="paragraph[.//table]"/-->
 	
-	<xsl:template match="table">
+	<xsl:template match="paragraph/table">
 		<table class="documentTextTable">
 			<xsl:for-each select=".//tr">
 				<tr class="documentTextTableRow">
-					<xsl:for-each select="./*">
-						<xsl:choose>
-							<xsl:when test="name(.) = 'td'">
-								<xsl:element name="td">
-									<xsl:if test="./@colspan"><xsl:attribute name="colspan"><xsl:value-of select="./@colspan"/></xsl:attribute></xsl:if>
-									<xsl:if test="./@rowspan"><xsl:attribute name="rowspan"><xsl:value-of select="./@rowspan"/></xsl:attribute></xsl:if>
-									<xsl:choose>
-										<xsl:when test="./* or ./text()"><xsl:apply-templates/></xsl:when>
-										<xsl:otherwise><xsl:attribute name="isEmpty">true</xsl:attribute>-</xsl:otherwise>
-									</xsl:choose>
-								</xsl:element>
-							</xsl:when>
-							<xsl:when test="name(.) = 'th'">
-								<xsl:element name="th">
-									<xsl:if test="./@colspan"><xsl:attribute name="colspan"><xsl:value-of select="./@colspan"/></xsl:attribute></xsl:if>
-									<xsl:if test="./@rowspan"><xsl:attribute name="rowspan"><xsl:value-of select="./@rowspan"/></xsl:attribute></xsl:if>
-									<xsl:choose>
-										<xsl:when test="./* or ./text()"><xsl:apply-templates/></xsl:when>
-										<xsl:otherwise><xsl:attribute name="isEmpty">true</xsl:attribute>-</xsl:otherwise>
-									</xsl:choose>
-								</xsl:element>
-							</xsl:when>
-							<xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
-						</xsl:choose>
-					</xsl:for-each>
 					<!--xsl:for-each select=".//td">
 						<td class="documentTextTableCell">
 							<xsl:if test="./@colspan">
@@ -200,7 +175,7 @@
 							</xsl:choose>
 						</td>
 					</xsl:for-each-->
-					<!-- <xsl:for-each select="./*">
+					<xsl:for-each select="./*">
 						<xsl:choose>
 							<xsl:when test="name(.) = 'td'">
 								<xsl:element name="td">
@@ -226,7 +201,7 @@
 							</xsl:when>
 							<xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
 						</xsl:choose>
-					</xsl:for-each> -->
+					</xsl:for-each>
 				</tr>
 			</xsl:for-each>
 		</table>
@@ -274,17 +249,5 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</a></xsl:template>
-
-	<xsl:template match="*">
-		<xsl:apply-templates/>
-	</xsl:template>
-
-	<xsl:template match="text()"><xsl:choose>
-		<xsl:when test="normalize-space(.) = ' '"><xsl:text disable-output-escaping="yes">&#x20;</xsl:text></xsl:when>
-		<xsl:otherwise>
-			<xsl:if test="not(contains('.,:;!?)]}', substring(normalize-space(.), 1, 1)))"><xsl:text disable-output-escaping="yes">&#x20;</xsl:text></xsl:if>
-			<xsl:value-of select="normalize-space(.)"/>
-		</xsl:otherwise>
-	</xsl:choose></xsl:template>
 	
 </xsl:stylesheet>
