@@ -156,10 +156,35 @@
 	
 	<!--xsl:template match="paragraph[.//table]"/-->
 	
-	<xsl:template match="paragraph/table">
+	<xsl:template match="table">
 		<table class="documentTextTable">
 			<xsl:for-each select=".//tr">
 				<tr class="documentTextTableRow">
+					<xsl:for-each select="./*">
+						<xsl:choose>
+							<xsl:when test="name(.) = 'td'">
+								<xsl:element name="td">
+									<xsl:if test="./@colspan"><xsl:attribute name="colspan"><xsl:value-of select="./@colspan"/></xsl:attribute></xsl:if>
+									<xsl:if test="./@rowspan"><xsl:attribute name="rowspan"><xsl:value-of select="./@rowspan"/></xsl:attribute></xsl:if>
+									<xsl:choose>
+										<xsl:when test="./* or ./text()"><xsl:apply-templates/></xsl:when>
+										<xsl:otherwise><xsl:attribute name="isEmpty">true</xsl:attribute>-</xsl:otherwise>
+									</xsl:choose>
+								</xsl:element>
+							</xsl:when>
+							<xsl:when test="name(.) = 'th'">
+								<xsl:element name="th">
+									<xsl:if test="./@colspan"><xsl:attribute name="colspan"><xsl:value-of select="./@colspan"/></xsl:attribute></xsl:if>
+									<xsl:if test="./@rowspan"><xsl:attribute name="rowspan"><xsl:value-of select="./@rowspan"/></xsl:attribute></xsl:if>
+									<xsl:choose>
+										<xsl:when test="./* or ./text()"><xsl:apply-templates/></xsl:when>
+										<xsl:otherwise><xsl:attribute name="isEmpty">true</xsl:attribute>-</xsl:otherwise>
+									</xsl:choose>
+								</xsl:element>
+							</xsl:when>
+							<xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
+						</xsl:choose>
+					</xsl:for-each>
 					<!--xsl:for-each select=".//td">
 						<td class="documentTextTableCell">
 							<xsl:if test="./@colspan">
@@ -175,7 +200,7 @@
 							</xsl:choose>
 						</td>
 					</xsl:for-each-->
-					<xsl:for-each select="./*">
+					<!-- <xsl:for-each select="./*">
 						<xsl:choose>
 							<xsl:when test="name(.) = 'td'">
 								<xsl:element name="td">
@@ -201,7 +226,7 @@
 							</xsl:when>
 							<xsl:otherwise><xsl:copy-of select="."/></xsl:otherwise>
 						</xsl:choose>
-					</xsl:for-each>
+					</xsl:for-each> -->
 				</tr>
 			</xsl:for-each>
 		</table>
