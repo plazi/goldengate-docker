@@ -12,6 +12,8 @@ The image is published on Dockerhub, so you can run GoldenGATE without having to
 
 Note that the container name ("treatmentbank" in the example) can be set arbitrarily, it is used when conncting to the console.
 
+Once started you can access http://localhost:8080/GgServer/ and http://localhost:8080/GgServer/search
+
 ## Building 
 
 To build the image yourself:
