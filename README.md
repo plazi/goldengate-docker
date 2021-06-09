@@ -1,6 +1,6 @@
 # Plazi GoldenGATE Server Docker Image
 
-This project creates a Docker image of the GoldenGATE Document Markup & Retrieval Server by Guido Sautter with plazi specific extensions.
+This project creates a Docker image of the [GoldenGATE Document Markup & Retrieval Server by Guido Sautter](https://github.com/gsautter/goldengate-server) with plazi specific extensions.
 
 The primary purpose of this project is to allow to easily set up test servers to test new datasets.
 
