@@ -1,16 +1,26 @@
-FROM tomcat:9.0-jdk11-corretto
+FROM tomcat:9.0-jdk11-openjdk-buster
 
 RUN mkdir ../install
 
-WORKDIR ../install
+WORKDIR /usr/local/install
 
+# still used for GgServer.docs.zip and GgServer.doc.plaziSrs.zip
 ADD http://tb.plazi.org/GgServer/TbLocalPlazi.zip TbBasic.zip
 
 RUN jar xf TbBasic.zip && cd ../tomcat/webapps 
 
+RUN apt update && apt install -y ant
+
+COPY ./idaho-core ./idaho-core
+COPY ./goldengate-server ./goldengate-server
+
+RUN cd idaho-core && ant
+
+RUN cd goldengate-server && ant
+
 COPY ./GgServerWebapp /usr/local/tomcat/webapps/GgServer/ 
 
-RUN mkdir /usr/local/GgServer && cd /usr/local/GgServer && jar xf ../install/GgServer.zip && \
+RUN mkdir /usr/local/GgServer && cd /usr/local/GgServer && jar xf ../install/goldengate-server/dist/GgServer.zip && \
     jar xf ../install/GgServer.docs.zip && jar xf ../install/GgServer.doc.plaziSrs.zip
 
 # fixing typo in default config file

@@ -1,0 +1,6 @@
+[submodule "idaho-core"]
+	path = idaho-core
+	url = https://github.com/gsautter/idaho-core.git
+[submodule "goldengate-server"]
+	path = goldengate-server
+	url = https://github.com/gsautter/goldengate-server.git
