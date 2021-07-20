@@ -4,3 +4,6 @@
 [submodule "goldengate-server"]
 	path = goldengate-server
 	url = https://github.com/gsautter/goldengate-server.git
+[submodule "goldengate-server-docs"]
+	path = goldengate-server-docs
+	url = https://github.com/gsautter/goldengate-server-docs.git
